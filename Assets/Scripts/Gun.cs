@@ -105,10 +105,9 @@ public class Gun : MonoBehaviour
     }
     public bool Reload()
     {
-        if (magAmmo < 25 && ammoRemain > 0 )
+        if (magAmmo < gunData.magCapacity && ammoRemain > 0 )
         {
            StartCoroutine(Reloading());
-           Debug.Log($"{magAmmo}");
            return true;
         }
         return false;
@@ -118,8 +117,17 @@ public class Gun : MonoBehaviour
     {    
         gunAudioPlayer.PlayOneShot(gunData.reloadClip);
         yield return new WaitForSeconds (gunData.reloadTime);
-        ammoRemain -= gunData.startAmmoRemain;
-        magAmmo += gunData.magCapacity;
+        if (ammoRemain >= gunData.magCapacity - magAmmo)
+        {
+            ammoRemain -= gunData.magCapacity - magAmmo;
+            magAmmo += gunData.magCapacity - magAmmo;
+        }
+        else if (ammoRemain < gunData.magCapacity - magAmmo)
+        {
+            magAmmo += ammoRemain;
+            ammoRemain -= ammoRemain;
+        }
+        CurrentState = State.Ready;
         uimanager.SetAmmoText(magAmmo, ammoRemain);
     }
 }
