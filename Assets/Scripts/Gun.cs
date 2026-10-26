@@ -70,10 +70,10 @@ public class Gun : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, fireDistance, targetLayer))
         {
             hitPosition = hit.point;
-            IDamegeable target = hit.collider.GetComponent<IDamegeable>();
+            IDamageable target = hit.collider.GetComponent<IDamageable>();
             if (target != null)
             {
-                target.OnDamege(gunData.damage, hit.point, hit.normal);
+                target.OnDamage(gunData.damage, hit.point, hit.normal);
             }
         }
         else
@@ -81,7 +81,7 @@ public class Gun : MonoBehaviour
             hitPosition = fireTransform.position + fireTransform.forward * fireDistance;
         }
         
-        StartCoroutine(ShotEffect(hitPosition));
+        StartCoroutine(CoShotEffect(hitPosition));
         
         magAmmo--;
         uimanager.SetAmmoText(magAmmo, ammoRemain);
@@ -92,7 +92,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    private IEnumerator ShotEffect(Vector3 hitPosition)
+    private IEnumerator CoShotEffect(Vector3 hitPosition)
     {
         muzzleFlashEffect.Play();
         shellEjcetEffect.Play();
@@ -107,16 +107,22 @@ public class Gun : MonoBehaviour
     {
         if (magAmmo < gunData.magCapacity && ammoRemain > 0 )
         {
-           StartCoroutine(Reloading());
+           StartCoroutine(CoReload());
            return true;
         }
         return false;
     }
 
-    private IEnumerator Reloading()
+    private IEnumerator CoReload()
     {    
+        CurrentState = State.Reloading;
         gunAudioPlayer.PlayOneShot(gunData.reloadClip);
         yield return new WaitForSeconds (gunData.reloadTime);
+        
+        /*int ammoToFill = Mathf.Min(gunData.magCapacity - magAmmo, ammoRemain);
+        magAmmo += ammoToFill;
+        ammoRemain -= ammoToFill;*/
+
         if (ammoRemain >= gunData.magCapacity - magAmmo)
         {
             ammoRemain -= gunData.magCapacity - magAmmo;
@@ -127,7 +133,7 @@ public class Gun : MonoBehaviour
             magAmmo += ammoRemain;
             ammoRemain -= ammoRemain;
         }
-        CurrentState = State.Ready;
         uimanager.SetAmmoText(magAmmo, ammoRemain);
+        CurrentState = State.Ready;
     }
 }

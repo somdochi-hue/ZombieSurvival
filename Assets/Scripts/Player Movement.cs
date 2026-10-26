@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate() // 매 프래임마다 물리 관련 업데이트.
     {
-        float angle = playerInput.Rotate *rotateSpeed * Time.deltaTime;
+        float angle = playerInput.Rotate * rotateSpeed * Time.deltaTime;
         playerRigidbody.MoveRotation(playerRigidbody.rotation * Quaternion.Euler(0f, angle, 0f));
         
         Vector3 delta = playerInput.Move * transform.forward * moveSpeed * Time.deltaTime;
