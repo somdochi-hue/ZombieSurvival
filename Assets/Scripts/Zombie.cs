@@ -26,7 +26,7 @@ public class Zombie : LivingEntity
     private NavMeshAgent agent;
     private Animator zombieAnimator;
     private AudioSource zombieAudioSource;
-    public float damage = 10;
+    public float damage = 10f;
     public float AttakInterber = 1f;
     private float lastAttackTime;
 
@@ -83,10 +83,6 @@ public class Zombie : LivingEntity
     protected override void OnEnable()
     {
         base.OnEnable();
-
-        agent.enabled = true;
-        agent.ResetPath();   // 내부에 있는 이동경로를 초기화.
-
         if (NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 10f, NavMesh.AllAreas))
         {
             agent.Warp(hit.position);
@@ -95,6 +91,14 @@ public class Zombie : LivingEntity
         zombieCollider.enabled = true;
 
         CurrentStatus = Status.Idle;
+    }
+
+        private void OnDisable()
+    {
+        if (agent.isOnNavMesh)
+        {
+            agent.ResetPath();
+        }
     }
 
     private void Update()
@@ -116,10 +120,7 @@ public class Zombie : LivingEntity
             }
     }
 
-    private void UpdateDie()
-    {
-        
-    }
+    private void UpdateDie() { }
 
     private void UpdateAttack()
     {

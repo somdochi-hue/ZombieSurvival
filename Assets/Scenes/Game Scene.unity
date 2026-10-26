@@ -165,7 +165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4443368a1185a0448045dd3503a5424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieSpawner
-  zombiePrefab: {fileID: 8472548296598716204}
+  uiManager: {fileID: 310085960}
+  zombiePrefab: {fileID: 2913624211185033867, guid: 737c094880ada7746aeef4c6e7e71959,
+    type: 3}
   zombieDatas:
   - {fileID: 11400000, guid: a5d8dbf0f116f1e46bf1411160d9fc81, type: 2}
   - {fileID: 11400000, guid: 4e4d9606d5c092a4e90e07fde26fdb2d, type: 2}
@@ -199,7 +201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144027329362878, guid: 63226789a2ac34fec8493b064c47bd44, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1496761931941770, guid: 63226789a2ac34fec8493b064c47bd44, type: 3}
       propertyPath: m_IsActive
@@ -333,9 +335,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   ammoText: {fileID: 310085961}
+  waveInfoText: {fileID: 310085962}
 --- !u!114 &310085961 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114981677178112688, guid: 63226789a2ac34fec8493b064c47bd44,
+    type: 3}
+  m_PrefabInstance: {fileID: 310085958}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &310085962 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114843940844466002, guid: 63226789a2ac34fec8493b064c47bd44,
     type: 3}
   m_PrefabInstance: {fileID: 310085958}
   m_PrefabAsset: {fileID: 0}
@@ -1544,86 +1559,6 @@ MonoBehaviour:
   uiHealth: {fileID: 1301722465}
   HitClip: {fileID: 8300000, guid: cbfb3a79860ac42c89b09fc131ef4b61, type: 3}
   deathClip: {fileID: 8300000, guid: 4265c953ea2b74edabac0c972182dcba, type: 3}
---- !u!1001 &8472548296598716198
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3657695380328610527, guid: 737c094880ada7746aeef4c6e7e71959,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657695380328610527, guid: 737c094880ada7746aeef4c6e7e71959,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657695380328610527, guid: 737c094880ada7746aeef4c6e7e71959,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657695380328610527, guid: 737c094880ada7746aeef4c6e7e71959,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657695380328610527, guid: 737c094880ada7746aeef4c6e7e71959,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657695380328610527, guid: 737c094880ada7746aeef4c6e7e71959,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657695380328610527, guid: 737c094880ada7746aeef4c6e7e71959,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657695380328610527, guid: 737c094880ada7746aeef4c6e7e71959,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657695380328610527, guid: 737c094880ada7746aeef4c6e7e71959,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657695380328610527, guid: 737c094880ada7746aeef4c6e7e71959,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3657695380328769343, guid: 737c094880ada7746aeef4c6e7e71959,
-        type: 3}
-      propertyPath: m_Name
-      value: Zombie
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 737c094880ada7746aeef4c6e7e71959, type: 3}
---- !u!114 &8472548296598716204 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2913624211185033867, guid: 737c094880ada7746aeef4c6e7e71959,
-    type: 3}
-  m_PrefabInstance: {fileID: 8472548296598716198}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 363cbc4427031d843ac4335072681fe3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Zombie
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1633,7 +1568,6 @@ SceneRoots:
   - {fileID: 992016787}
   - {fileID: 5275788290243049595}
   - {fileID: 310085958}
-  - {fileID: 8472548296598716198}
   - {fileID: 1085723733}
   - {fileID: 402337277}
   - {fileID: 1049750029}

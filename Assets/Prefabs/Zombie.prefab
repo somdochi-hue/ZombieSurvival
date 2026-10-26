@@ -317,7 +317,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   traceDistance: 10
-  AttackDistance: 0.5
+  AttackDistance: 1
   bloodEffect: {fileID: 7784424690761333485}
   zombieCollider: {fileID: 496401229026947653}
   zombieRanderer: {fileID: 3657695380340337567}
