@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;// 유니티 안에 있는 여러개의 배열을 다루는 시스템.
 using System.Collections;
+using System.Threading.Tasks;
 
 
 public class ZombieSpawner : MonoBehaviour
 {
-    public UIManager uiManager;
+    private GameManager gameManager;
+    private UIManager uiManager;
     public Zombie zombiePrefab;
     public ZombieData[] zombieDatas;
     public Transform[] spawnPoints;
@@ -14,6 +16,13 @@ public class ZombieSpawner : MonoBehaviour
     private readonly List<Zombie> zombiePool = new List<Zombie>();
 
     private int wave = 0;
+
+    private void Start()
+    {
+        GameObject findGo = GameObject.FindWithTag("GameController");
+        gameManager = findGo.GetComponent<GameManager>();
+        uiManager = gameManager.uIManager;
+    }
 
     private void Update()
     {
@@ -46,6 +55,11 @@ public class ZombieSpawner : MonoBehaviour
             zombie = Instantiate(zombiePrefab);
             zombie.gameObject.SetActive(false);
             zombiePool.Add(zombie);
+
+            zombie.OnDead.AddListener(() => zombies.Remove(zombie));
+            zombie.OnDead.AddListener(() => uiManager.SetwaveTaxt(wave, zombies.Count));
+            zombie.OnDead.AddListener(() => StartCoroutine(CoReturnToPoolZombie(zombie)));
+            zombie.OnDead.AddListener(() => gameManager.AddScore(50));
         }
 
         zombie = zombiePool[0];
@@ -53,12 +67,9 @@ public class ZombieSpawner : MonoBehaviour
         zombie.transform.position = point.position;
         zombie.transform.rotation = point.rotation;
         zombie.gameObject.SetActive(true);
+
         zombies.Add(zombie);
         zombiePool.Remove(zombie);
-
-        zombie.OnDead.AddListener(() => zombies.Remove(zombie));
-        zombie.OnDead.AddListener(() => uiManager.SetwaveTaxt(wave, zombies.Count));
-        zombie.OnDead.AddListener(() => StartCoroutine(CoReturnToPoolZombie(zombie)));
     }
 
     private IEnumerator CoReturnToPoolZombie(Zombie zombie)
@@ -67,4 +78,12 @@ public class ZombieSpawner : MonoBehaviour
         zombie.gameObject.SetActive(false);
         zombiePool.Add(zombie);
     }
-}
+
+    public void OnEndGame()
+    {
+        for (int i = zombies.Count -1; i >=0; i--)
+        {
+            zombies[i].Die();
+        }
+    }
+} 

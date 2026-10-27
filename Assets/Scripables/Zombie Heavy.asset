@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02259f6dae174df4bb6488b3d0588a4f, type: 3}
   m_Name: Zombie Heavy
   m_EditorClassIdentifier: Assembly-CSharp::ZombieData
-  maxHp: 100
+  maxHp: 150
   damage: 20
-  speed: 2
-  skinColor: {r: 1, g: 1, b: 1, a: 1}
+  speed: 1.5
+  skinColor: {r: 0.096787095, g: 0.2566938, b: 0.8207547, a: 1}

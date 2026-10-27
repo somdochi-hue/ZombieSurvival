@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using System.Runtime.Serialization.Formatters;
 
 public class Zombie : LivingEntity
 {
@@ -134,8 +135,11 @@ public class Zombie : LivingEntity
         {
             lastAttackTime = Time.time;
             IDamageable damageable = target.GetComponent<IDamageable>();
-            var hitNormal = (transform.position - target.position).normalized;
-            damageable.OnDamage(damage, target.position, hitNormal);
+            if(damageable != null)
+            {
+                var hitNormal = (transform.position - target.position).normalized;
+                damageable.OnDamage(damage, target.position, hitNormal);
+            }
         }
     }
 

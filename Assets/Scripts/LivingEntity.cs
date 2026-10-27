@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
@@ -32,5 +33,10 @@ public class LivingEntity : MonoBehaviour, IDamageable
     {
         IsDeath = true;
         OnDead.Invoke();
+    }
+
+    public virtual void AddHealth(int add)
+    {
+        Health = Mathf.Clamp(Health + add, 0 , startingHealth);
     }
 }

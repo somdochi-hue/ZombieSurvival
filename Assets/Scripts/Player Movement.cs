@@ -33,4 +33,16 @@ public class PlayerMovement : MonoBehaviour
         // 사용자 입력값 * 캐릭터가 바라보는 방향 * 속도 * 시간.
         playerRigidbody.MovePosition(playerRigidbody.position + delta);
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Item"))
+        {
+            IItem item = other.GetComponent<IItem>();
+            if (item != null)
+            {
+                item.Use(gameObject);
+            }
+        }
+    }
 }

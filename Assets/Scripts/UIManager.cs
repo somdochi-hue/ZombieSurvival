@@ -6,11 +6,15 @@ public class UIManager : MonoBehaviour
 {
     public Text ammoText;
 
+    public Text scoreText;
+
     public Text waveInfoText;
+
+    public GameObject gameOverUI;
 
     public void OEnable()
     {
-        SetAmmoText(0, 0);
+        SetActiveGameOverUI(false);
     }
 
     public void SetAmmoText(int magAmmo, int remainAmoo)
@@ -21,5 +25,15 @@ public class UIManager : MonoBehaviour
     public void SetwaveTaxt(int wave, int count)
     {
         waveInfoText.text = $"Wave: {wave} \nEnemy Left: {count}";
+    }
+
+        public void Setscore(int score)
+    {
+        scoreText.text = $"SCORE: {score}";
+    }
+
+    public void SetActiveGameOverUI(bool active)
+    {
+        gameOverUI.SetActive(active);
     }
 }

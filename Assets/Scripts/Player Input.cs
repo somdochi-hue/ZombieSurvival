@@ -9,10 +9,18 @@ public class PlayerInput : MonoBehaviour
     public static readonly string FireAxis = "Fire1";
     public static readonly string ReloadAxis = "Reload";
 
-    public float Move {get; private set;}
+    public float Move {get; private set;} 
     public float Rotate {get; private set;}
     public bool Fire {get; private set;}
     public bool Reload {get; private set;}
+
+    private void OnDisable()
+    {
+        Move = 0f;
+        Rotate = 0f;
+        Fire = false;
+        Reload = false;
+    }
 
     public void Update()
     {

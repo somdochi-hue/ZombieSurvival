@@ -61,7 +61,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    public LayerMask targetLayer; // 일부 타켓 레이어만 선택해서 데이터를 불러 올 수 있다. (Tag와 비슷한 형식)
+    public LayerMask targetLayer; // 일부 타겟 레이어만 선택해서 데이터를 불러 올 수 있다. (Tag와 비슷한 형식)
     private void Shoot()
     {
         Vector3 hitPosition;
@@ -111,6 +111,20 @@ public class Gun : MonoBehaviour
            return true;
         }
         return false;
+    }
+
+    public void AddammoRemain(int Ammo)
+    {
+        int index = ammoRemain + Ammo;
+        if(index < 80)
+        {
+            ammoRemain += Ammo;
+        }
+        else if (index >= 80)
+        {
+            ammoRemain = 80;
+        }
+        uimanager.SetAmmoText(magAmmo, ammoRemain);
     }
 
     private IEnumerator CoReload()

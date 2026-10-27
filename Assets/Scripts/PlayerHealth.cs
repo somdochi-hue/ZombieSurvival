@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class PlayerHealth : LivingEntity
 {
-    
     public readonly static int IdDie = Animator.StringToHash("Die");
     public Image uiHealth;
     public AudioClip HitClip;
@@ -48,6 +47,12 @@ public class PlayerHealth : LivingEntity
         uiHealth.fillAmount = Health / startingHealth;
     }
 
+    public override void AddHealth(int add)
+    {
+        base.AddHealth(add);
+        uiHealth.fillAmount = Health / startingHealth;
+    }
+
     public override void Die()
     {
         base.Die();
@@ -57,5 +62,7 @@ public class PlayerHealth : LivingEntity
 
         playerMovement.enabled = false;
         playerInput.enabled = false;
+
+        //uiHealth.gameObject = 
     }
 }
